@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Allow existing files and directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Route API calls to the API entry point
+RewriteRule ^api/(.*)$ api/index.php [QSA,L]
+
+# Route everything else to the SPA
+RewriteRule ^(?!api/)(.*)$ public/index.html [QSA,L]

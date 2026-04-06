@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SHIFFIN - Sistem Manajemen Keuangan Pesantren">
+    <title>SHIFFIN — Shiffa Finance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Login Screen -->
+        <div id="login-screen" class="login-container">
+            <div class="login-backdrop"></div>
+            <div class="login-card">
+                <div class="login-header">
+                    <div class="login-logo">
+                        <span class="material-symbols-rounded">account_balance</span>
+                    </div>
+                    <h1>SHIFFIN</h1>
+                    <p class="login-subtitle">Shiffa Finance — Sistem Keuangan Pesantren</p>
+                </div>
+                <form id="login-form" class="login-form">
+                    <div class="form-group">
+                        <label for="login-username">Username</label>
+                        <div class="input-icon">
+                            <span class="material-symbols-rounded">person</span>
+                            <input type="text" id="login-username" placeholder="Masukkan username" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <div class="input-icon">
+                            <span class="material-symbols-rounded">lock</span>
+                            <input type="password" id="login-password" placeholder="Masukkan password" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" id="login-btn">
+                        <span class="material-symbols-rounded">login</span>
+                        Masuk
+                    </button>
+                    <div id="login-error" class="alert alert-error" style="display:none"></div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Main Application -->
+        <div id="main-app" style="display:none">
+            <!-- Sidebar -->
+            <aside id="sidebar" class="sidebar">
+                <div class="sidebar-header">
+                    <span class="material-symbols-rounded sidebar-logo">account_balance</span>
+                    <div>
+                        <h2>SHIFFIN</h2>
+                        <span class="sidebar-subtitle">Shiffa Finance</span>
+                    </div>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <div class="nav-section">
+                        <span class="nav-section-title">MENU UTAMA</span>
+                        <a href="#" class="nav-item active" data-page="dashboard">
+                            <span class="material-symbols-rounded">dashboard</span>
+                            <span>Dashboard</span>
+                        </a>
+                    </div>
+
+                    <div class="nav-section" id="nav-cashier">
+                        <span class="nav-section-title">KASIR</span>
+                        <a href="#" class="nav-item" data-page="cashier">
+                            <span class="material-symbols-rounded">point_of_sale</span>
+                            <span>Pembayaran</span>
+                        </a>
+                        <a href="#" class="nav-item" data-page="payment-history">
+                            <span class="material-symbols-rounded">receipt_long</span>
+                            <span>Riwayat Pembayaran</span>
+                        </a>
+                    </div>
+
+                    <div class="nav-section" id="nav-treasurer">
+                        <span class="nav-section-title">BENDAHARA</span>
+                        <a href="#" class="nav-item" data-page="income">
+                            <span class="material-symbols-rounded">trending_up</span>
+                            <span>Pemasukan</span>
+                        </a>
+                        <a href="#" class="nav-item" data-page="expense">
+                            <span class="material-symbols-rounded">trending_down</span>
+                            <span>Pengeluaran</span>
+                        </a>
+                        <a href="#" class="nav-item" data-page="distribution">
+                            <span class="material-symbols-rounded">account_tree</span>
+                            <span>Distribusi Dana</span>
+                        </a>
+                        <a href="#" class="nav-item" data-page="reports">
+                            <span class="material-symbols-rounded">assessment</span>
+                            <span>Laporan</span>
+                        </a>
+                    </div>
+
+                    <div class="nav-section" id="nav-admin">
+                        <span class="nav-section-title">ADMIN</span>
+                        <a href="#" class="nav-item" data-page="students">
+                            <span class="material-symbols-rounded">school</span>
+                            <span>Data Santri</span>
+                        </a>
+                        <a href="#" class="nav-item" data-page="master-data">
+                            <span class="material-symbols-rounded">settings</span>
+                            <span>Data Master</span>
+                        </a>
+                    </div>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <span class="material-symbols-rounded">person</span>
+                        </div>
+                        <div>
+                            <span class="user-name" id="sidebar-user-name">User</span>
+                            <span class="user-role" id="sidebar-user-role">Role</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-ghost btn-sm" id="logout-btn" title="Keluar">
+                        <span class="material-symbols-rounded">logout</span>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main id="main-content" class="main-content">
+                <header class="content-header">
+                    <button class="btn btn-ghost sidebar-toggle" id="sidebar-toggle">
+                        <span class="material-symbols-rounded">menu</span>
+                    </button>
+                    <h1 id="page-title">Dashboard</h1>
+                    <div class="header-actions">
+                        <div class="hijri-badge" id="hijri-period"></div>
+                    </div>
+                </header>
+
+                <div id="page-content" class="page-content">
+                    <!-- Pages loaded dynamically -->
+                </div>
+            </main>
+        </div>
+
+        <!-- Toast Container -->
+        <div id="toast-container" class="toast-container"></div>
+
+        <!-- Modal -->
+        <div id="modal-overlay" class="modal-overlay" style="display:none">
+            <div class="modal" id="modal-box">
+                <div class="modal-header">
+                    <h3 id="modal-title">Modal</h3>
+                    <button class="btn btn-ghost btn-sm modal-close" id="modal-close-btn">
+                        <span class="material-symbols-rounded">close</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modal-body"></div>
+                <div class="modal-footer" id="modal-footer"></div>
+            </div>
+        </div>
+
+        <!-- Receipt Print Overlay -->
+        <div id="receipt-overlay" class="receipt-overlay" style="display:none">
+            <div id="receipt-content" class="receipt-content"></div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/pages.js"></script>
+    <script src="js/pages2.js"></script>
+</body>
+</html>
